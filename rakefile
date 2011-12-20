@@ -1,0 +1,8 @@
+require 'rdoc/task'
+
+Rake::RDocTask.new(:rdoc) {|rdoc|
+  rdoc.rdoc_files.include(%w[ README matrix.rb])
+  rdoc.main = 'README'
+  rdoc.title = 'matrix'
+  rdoc.rdoc_dir = 'doc'
+}

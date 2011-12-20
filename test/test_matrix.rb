@@ -34,3 +34,19 @@ class TestMatrix < Test::Unit::TestCase
     assert_equal(@m1, m)
   end
 end
+
+class TestVector < Test::Unit::TestCase
+  def setup
+    @v1 = Vector[1.0, 3.0, 5.0]
+    @v2 = Vector[-2.0, 6.0, 4.0]
+    @v3 = Vector[1.0, 1.0]
+  end
+
+  def test_cross_product
+    expected = Vector[-18.0, -14.0, 12.0]
+
+    assert_equal(expected, @v1.cross_product(@v2))
+    assert_raise(Vector::ErrDimensionMismatch) { @v1.cross_product(@v3) }
+    assert_raise(Vector::ErrDimensionMismatch) { @v3.cross_product(@v1) }
+  end
+end

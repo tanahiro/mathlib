@@ -4,7 +4,7 @@
 # Author:: Hiroyuki Tanaka
 # License:: 2-clause BSD (http://www.opensource.org/licenses/bsd-license.php)
 #
-# Extention of class Matrix in standard ruby library.
+# Extension of class Matrix in standard ruby library.
 #
 # The original matrix.rb is..
 # Current Maintainer:: Marc-André Lafortune
@@ -76,6 +76,31 @@ class Matrix
   def add_rows! *rows
     matrix_new = add_rows *rows
     @rows = matrix_new.to_a
+  end
+end
+
+##
+# Extends Vector class
+class Vector
+  ##
+  # Calculates cross products. Size of vector should be 3.
+  def cross_product x
+    Vector.Raise ErrDimensionMismatch if size != 3
+    Vector.Raise ErrDimensionMismatch if x.size != 3
+
+    c = Array.new
+
+    c[0] = @elements[1]*x[2] - @elements[2]*x[1]
+    c[1] = @elements[2]*x[0] - @elements[0]*x[2]
+    c[2] = @elements[0]*x[1] - @elements[1]*x[0]
+
+    Vector.elements(c)
+  end
+
+  ##
+  # Retunrs negated vector
+  def -@
+    map(&:-@)
   end
 end
 

@@ -1,0 +1,12 @@
+= matrix.rb
+Extension of Class Matrix and Class Vector
+
+== class Matrix
+=== Added methods
+* Matrix#add_columns, Matrix#add_columns!
+* Matrix#add_rows, Matrix#add_rows!
+
+== class Vector
+=== Added methods
+* Vector#cross_product
+* Vector#-@
