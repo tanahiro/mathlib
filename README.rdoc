@@ -1,5 +1,7 @@
-= matrix.rb
-Extension of Class Matrix and Class Vector
+= Math Libraries
+
+matrix.rb:: Extension of Class Matrix and Class Vector
+quaternion.rb:: Class for Quaternion operation
 
 == class Matrix
 === Added methods

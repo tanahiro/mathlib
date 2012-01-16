@@ -1,7 +1,7 @@
-require 'test/unit'
-require 'matrix/matrix'
+require 'minitest/autorun'
+require 'math/matrix'
 
-class TestMatrix < Test::Unit::TestCase
+class TestMatrix < MiniTest::Unit::TestCase
   def setup
     @m1 = Matrix[[1, 2, 3], [4, 5, 6]]
   end
@@ -10,7 +10,7 @@ class TestMatrix < Test::Unit::TestCase
     expected = Matrix[[1, 2, 3, 7], [4, 5, 6, 8]]
 
     assert_equal(expected, @m1.add_columns(Matrix[[7], [8]]))
-    assert_raise(ArgumentError) { @m1.add_columns(Matrix[[7, 8]]) }
+    assert_raises(ArgumentError) { @m1.add_columns(Matrix[[7, 8]]) }
   end
 
   def test_add_columns!
@@ -24,7 +24,7 @@ class TestMatrix < Test::Unit::TestCase
     expected = Matrix[[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 
     assert_equal(expected, @m1.add_rows(Matrix[[7, 8, 9]]))
-    assert_raise(ArgumentError) { @m1.add_rows(Matrix[[7, 8]]) }
+    assert_raises(ArgumentError) { @m1.add_rows(Matrix[[7, 8]]) }
   end
 
   def test_add_rows!
@@ -35,7 +35,7 @@ class TestMatrix < Test::Unit::TestCase
   end
 end
 
-class TestVector < Test::Unit::TestCase
+class TestVector < MiniTest::Unit::TestCase
   def setup
     @v1 = Vector[1.0, 3.0, 5.0]
     @v2 = Vector[-2.0, 6.0, 4.0]
@@ -46,7 +46,7 @@ class TestVector < Test::Unit::TestCase
     expected = Vector[-18.0, -14.0, 12.0]
 
     assert_equal(expected, @v1.cross_product(@v2))
-    assert_raise(Vector::ErrDimensionMismatch) { @v1.cross_product(@v3) }
-    assert_raise(Vector::ErrDimensionMismatch) { @v3.cross_product(@v1) }
+    assert_raises(Vector::ErrDimensionMismatch) { @v1.cross_product(@v3) }
+    assert_raises(Vector::ErrDimensionMismatch) { @v3.cross_product(@v1) }
   end
 end

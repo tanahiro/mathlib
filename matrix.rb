@@ -7,7 +7,7 @@
 # Extension of class Matrix in standard ruby library.
 #
 # The original matrix.rb is..
-# Current Maintainer:: Marc-André Lafortune
+# Current Maintainer:: Marc-Andre Lafortune
 # Original Author:: Keiju ISHITSUKA
 # Original Documentation:: Gavin Sinclair (sourced from <i>Ruby in a Nutshell</i> (Matsumoto, O'Reilly))
 ##
@@ -102,5 +102,6 @@ class Vector
   def -@
     map(&:-@)
   end
+
 end
 
