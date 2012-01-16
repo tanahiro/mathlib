@@ -3,7 +3,8 @@ require 'rubygems/package_task'
 require 'rake/testtask'
 
 RDoc::Task.new(:rdoc) {|rdoc|
-  rdoc.rdoc_files.include(%w[ README.rdoc matrix.rb quaternion.rb])
+  rdoc.rdoc_files.include(%w[ README.rdoc ])
+  rdoc.rdoc_files.include(Dir.glob("lib/**/*.rb"))
   rdoc.main = 'README.rdoc'
   rdoc.title = 'Math Library'
   rdoc.rdoc_dir = 'doc'
