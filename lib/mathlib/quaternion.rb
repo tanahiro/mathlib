@@ -1,6 +1,6 @@
 #encoding:utf-8
 
-require 'math/matrix'
+require 'mathlib/matrix'
 
 ##
 # Class for Quaternion operation.

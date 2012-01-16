@@ -1,8 +1,48 @@
 require 'rdoc/task'
+require 'rubygems/package_task'
+require 'rake/testtask'
 
-Rake::RDocTask.new(:rdoc) {|rdoc|
-  rdoc.rdoc_files.include(%w[ README matrix.rb quaternion.rb])
-  rdoc.main = 'README'
+RDoc::Task.new(:rdoc) {|rdoc|
+  rdoc.rdoc_files.include(%w[ README.rdoc matrix.rb quaternion.rb])
+  rdoc.main = 'README.rdoc'
   rdoc.title = 'Math Library'
   rdoc.rdoc_dir = 'doc'
+}
+
+task :gem => 'gem:package'
+namespace :gem do
+  spec = Gem::Specification.new {|s|
+    s.platform = Gem::Platform::RUBY
+    s.name = "mathlib"
+    s.version = "0.0.2"
+    s.summary = "Mathematical libraries"
+    s.requirements << 'none'
+    s.require_path = 'lib'
+    s.email = 'hryktnk@gmail.com'
+    s.homepage = 'https://github.com/tanahiro/mathlib'
+    s.author = "Hiroyuki Tanaka"
+    s.license = "The MIT License"
+    s.bindir = "bin"
+    s.has_rdoc = true
+    s.files << Dir.glob("lib/**/*.rb")
+    s.files << Dir.glob("test/*.rb")
+    s.files << ("README.rdoc")
+    s.files << ("rakefile")
+    s.description = "Some Mathematical libraries"
+  }
+
+  Gem::PackageTask.new(spec) {|pkg|
+    pkg.need_tar = true
+    pkg.package_files.include("lib/**/*.rb")
+    pkg.package_files.include("test/*.rb")
+    pkg.package_files.include("README.rdoc")
+    pkg.package_files.include("rakefile")
+  }
+end
+
+Rake::TestTask.new {|test|
+  test.libs << "./lib"
+  test.test_files = FileList['test/test*.rb']
+  test.verbose = true
+  test.name = :test
 }

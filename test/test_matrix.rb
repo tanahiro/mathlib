@@ -1,5 +1,5 @@
-require 'minitest/autorun'
-require 'math/matrix'
+require "minitest/autorun"
+require "mathlib/matrix"
 
 class TestMatrix < MiniTest::Unit::TestCase
   def setup

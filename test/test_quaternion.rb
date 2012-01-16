@@ -1,5 +1,6 @@
-require 'minitest/autorun'
-require 'math/quaternion'
+require "minitest/autorun"
+require "mathlib/matrix"
+require "mathlib/quaternion"
 
 class TestQuaternion < MiniTest::Unit::TestCase
   def setup
