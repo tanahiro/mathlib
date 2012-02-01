@@ -15,7 +15,7 @@ namespace :gem do
   spec = Gem::Specification.new {|s|
     s.platform = Gem::Platform::RUBY
     s.name = "mathlib"
-    s.version = "0.0.2"
+    s.version = "0.0.3"
     s.summary = "Mathematical libraries"
     s.requirements << 'none'
     s.require_path = 'lib'
