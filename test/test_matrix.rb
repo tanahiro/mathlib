@@ -49,4 +49,11 @@ class TestVector < MiniTest::Unit::TestCase
     assert_raises(Vector::ErrDimensionMismatch) { @v1.cross_product(@v3) }
     assert_raises(Vector::ErrDimensionMismatch) { @v3.cross_product(@v1) }
   end
+
+  def test_direction?
+    assert_equal(1, Vector[1.0, 2.0, 3.0].direction?(Vector[2.0, 4.0, 6.0]))
+    assert_equal(-1,
+                 Vector[1.0, 2.0, 3.0].direction?(Vector[-2.0, -4.0, -6.0]))
+    assert_equal(0, Vector[1.0, 2.0, 3.0].direction?(Vector[1.0, 3.0, 7.0]))
+  end
 end

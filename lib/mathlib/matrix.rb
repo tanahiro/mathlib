@@ -99,9 +99,31 @@ class Vector
 
   ##
   # Retunrs negated vector
+  #  -Vector[1.0, 1.0, 1.0] # => Vector[-1.0, -1.0, -1.0]
   def -@
     map(&:-@)
   end
 
+  ##
+  # Checks the direction of the two vectors.
+  # Returns 1 if the direction is same, -1 if the direction is opposite,
+  # othrewise 0.
+  #  Vector[1.0, 2.0, 3.0].direction?(Vector[2.0, 4.0, 6.0]) # => 1
+  #  Vector[1.0, 2.0, 3.0].direction?(Vector[-2.0, -4.0, -6.0]) # => -1
+  #  Vector[1.0, 2.0, 3.0].direction?(Vector[1.0, 3.0, 7.0]) # => 0
+  def direction? x
+    var1 = self.inner_product(x)
+    var2 = self.r*x.r/var1
+
+    if (1.0 - var2.abs).abs < 1.0e-15
+      if var2 > 0
+        return 1
+      else
+        return -1
+      end
+    else
+      return 0
+    end
+  end
 end
 
