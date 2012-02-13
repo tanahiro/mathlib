@@ -2,7 +2,7 @@
 #
 # = matrix.rb
 # Author:: Hiroyuki Tanaka
-# License:: 2-clause BSD (http://www.opensource.org/licenses/bsd-license.php)
+# License:: Public Domain
 #
 # Extension of class Matrix in standard ruby library.
 #
@@ -17,6 +17,7 @@ require 'matrix'
 ##
 # Extends class Matrix.
 class Matrix
+  
   ##
   # Returns a matirx that +columns+ are added to the right side of a matrix
   #   m = Matrix[[1, 2, 3], [4, 5, 6]]
@@ -82,6 +83,23 @@ end
 ##
 # Extends Vector class
 class Vector
+
+  Zero = 1e-15 # :nodoc:
+
+  ##
+  # If absolute value of a variable is smaller than +zero+,
+  # the variable can be recognized as 0.
+  # The default value is 1e-15
+  attr_accessor :zero
+
+  ##
+  #  Redefined for initializing Vector#zero
+  def initialize(array)
+    @elements = array
+
+    @zero = Zero
+  end
+
   ##
   # Calculates cross products. Size of vector should be 3.
   def cross_product x
@@ -115,7 +133,7 @@ class Vector
     var1 = self.inner_product(x)
     var2 = self.r*x.r/var1
 
-    if (1.0 - var2.abs).abs < 1.0e-15
+    if (1.0 - var2.abs).abs < @zero
       if var2 > 0
         return 1
       else
@@ -126,4 +144,3 @@ class Vector
     end
   end
 end
-

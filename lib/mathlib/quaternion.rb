@@ -1,4 +1,8 @@
 #encoding:utf-8
+#
+# = quaternion.rb
+# Author:: Hiroyuki Tanaka
+# License:: Public Domain
 
 require 'mathlib/matrix'
 
